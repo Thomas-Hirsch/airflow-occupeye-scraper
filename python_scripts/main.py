@@ -15,24 +15,24 @@ parser.add_argument('--scrape_datetime', type=str, help='Datetime for the hourly
 
 args = parser.parse_args()
 
-scrape_date = datetime.datetime.strptime(args.scrape_date, '%Y-%m-%d').date()
+scrape_date_string = args.scrape_date
+scrape_date = datetime.datetime.strptime(scrape_date_string, '%Y-%m-%d').date()
 
 surveys = get_surveys()
 surveys_to_s3(surveys)
 
 for survey in surveys:
+    if scrape_date_in_surveydays(scrape_date_string, survey)
+        sensor_dimension = get_sensors_dimension_from_api(survey)
+        sensor_dimension_to_s3(sensor_dimension)
 
+        # If the execution time is near to the date we're scrape yesterday's data as well to make sure it's complete
+        # If the time is before 3am, then scrape yesterday as well
 
-    sensor_dimension = get_sensors_dimension_from_api(survey)
-    sensor_dimension_to_s3(sensor_dimension)
+        # Need a daily task anyway to refresh the Athena partitions
 
-    # If the execution time is near to the date we're scrape yesterday's data as well to make sure it's complete
-    # If the time is before 3am, then scrape yesterday as well
-
-    # Need a daily task anyway to refresh the Athena partitions
-
-    survey_fact = get_survey_facts_from_api(survey, args.scrape_date)
-    survey_fact_to_s3(survey_fact, survey)
+        survey_fact = get_survey_facts_from_api(survey, args.scrape_date)
+        survey_fact_to_s3(survey_fact, survey)
 
 # Houry:
 # surveys = get_surveys()
