@@ -22,6 +22,10 @@ def get_sensor_dimension_df(sensor_dimension):
     return df_sensor_dimension
 
 def get_survey_fact_df(survey_fact):
+
+    if survey_fact is None:
+        return pd.DataFrame()
+
     survey_fact_long = survey_fact_to_long_format(survey_fact)
     return pd.DataFrame(survey_fact_long)
 
@@ -70,6 +74,3 @@ def sensor_fact_data_to_long_format(sensor_data):
         previous_value = sensor_value
     return new_rows
 
-def scrape_date_in_surveydays(scrape_date_string, survey):
-
-    return (survey["StartDate"] <= scrape_date_string <= survey["EndDate"])
