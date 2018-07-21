@@ -18,14 +18,9 @@ def get_surveys_df(surveys):
 
 def get_sensor_dimension_df(sensor_dimension):
     sensor_dimension = strip_commas_from_api_response(sensor_dimension)
-    df_sensor_dimension = pd.DataFrame(sensor_dimension)
-    return df_sensor_dimension
+    return pd.DataFrame(sensor_dimension)
 
 def get_survey_fact_df(survey_fact):
-
-    if survey_fact is None:
-        return pd.DataFrame()
-
     survey_fact_long = survey_fact_to_long_format(survey_fact)
     return pd.DataFrame(survey_fact_long)
 

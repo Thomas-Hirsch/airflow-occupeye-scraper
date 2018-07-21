@@ -1,0 +1,73 @@
+{
+    "$schema": "../table_schema.json",
+    "id": "occupeye.surveys",
+    "columns": [
+        {
+            "description": "Is the survey active or not",
+            "name": "active",
+            "type": "boolean"
+        },
+        {
+            "description": "Description of how to interpret the category_1 field",
+            "name": "category_1_desc",
+            "type": "character"
+        },
+        {
+            "description": "Description of how to interpret the category_2 field",
+            "name": "category_2_desc",
+            "type": "character"
+        },
+        {
+            "description": "Description of how to interpret the category_3 field",
+            "name": "category_3_desc",
+            "type": "character"
+        },
+        {
+            "description": "Is the survey disabled or not",
+            "name": "disabled",
+            "type": "boolean"
+        },
+        {
+            "description": "End date for the survey",
+            "name": "enddate",
+            "type": "character"
+        },
+        {
+            "description": "End time forthe survey",
+            "name": "endtime",
+            "type": "character"
+        },
+        {
+            "description": "Name of the survey",
+            "name": "name",
+            "type": "character"
+        },
+        {
+            "description": "Start date of the survey",
+            "name": "startdate",
+            "type": "character"
+        },
+        {
+            "description": "Start time of the survey",
+            "name": "starttime",
+            "type": "character"
+        },
+        {
+            "description": "Unique identifier for the survey",
+            "name": "survey_id",
+            "type": "int"
+        },
+        {
+            "description": "The days in the working week for the survey",
+            "name": "workweek",
+            "type": "character"
+        }
+           ],
+    "table_desc": "Details of all surveys from the occupeye api",
+    "table_name": "surveys",
+    "data_format": "csv_quoted_nodate",
+    "location": "raw_data_v2/surveys",
+    "glue_specific": {
+        "Parameters" : {"skip.header.line.count":"1"}
+    }
+}

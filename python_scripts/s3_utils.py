@@ -1,6 +1,7 @@
 import boto3
 import botocore
 import json
+
 def read_json_from_s3(s3_path):
     bucket, key = s3_path_to_bucket_key(s3_path)
     obj = s3_resource.Object(bucket, key)
@@ -18,8 +19,6 @@ def s3_object_exists(bucket, path):
         return True
     except botocore.exceptions.ClientError as e:
         return False
-
-
 
 s3_resource = boto3.resource('s3')
 

@@ -1,0 +1,104 @@
+{
+  "$schema": "../table_schema.json",
+  "id": "occupeye.sensors",
+  "columns": [
+    {
+      "description": "Building",
+      "name": "building",
+      "type": "character"
+    },
+    {
+      "description": "Categorisation of the sensor at level 1 - see category_1_description for interpretation",
+      "name": "category_1",
+      "type": "character"
+    },
+    {
+      "description": "Categorisation of the sensor at level 2 - see category_2_description for interpretation",
+      "name": "category_2",
+      "type": "character"
+    },
+    {
+      "description": "Categorisation of the sensor at level 3 - see category_3_description for interpretation",
+      "name": "category_3",
+      "type": "character"
+    },
+    {
+      "description": "DeviceType - e.g. Room, Longstay Desk etc",
+      "name": "devicetype",
+      "type": "character"
+    },
+    {
+      "description": "Floor of building",
+      "name": "floor",
+      "type": "character"
+    },
+    {
+      "description": "HardwareID",
+      "name": "hardwareid",
+      "type": "character"
+    },
+    {
+      "description": "HostAddress",
+      "name": "hostaddress",
+      "type": "character"
+    },
+    {
+      "description": "Location identifier - e.g. meeting room name or desk location",
+      "name": "location",
+      "type": "character"
+    },
+    {
+      "description": "PIRAddress",
+      "name": "piraddress",
+      "type": "character"
+    },
+    {
+      "description": "RoomDescription",
+      "name": "roomdescription",
+      "type": "character"
+    },
+    {
+      "description": "RoomID",
+      "name": "roomid",
+      "type": "character"
+    },
+    {
+      "description": "RoomName",
+      "name": "roomname",
+      "type": "character"
+    },
+    {
+      "description": "RoomType",
+      "name": "roomtype",
+      "type": "character"
+    },
+    {
+      "description": "SensorID",
+      "name": "sensorid",
+      "type": "character"
+    },
+    {
+      "description": "ShareID",
+      "name": "shareid",
+      "type": "character"
+    },
+    {
+      "description": "SurveyDeviceID",
+      "name": "surveydeviceid",
+      "type": "character"
+    }
+  ],
+  "table_desc": "Details of each sensor from the occupeye api",
+  "table_name": "sensors",
+  "data_format": "csv",
+  "location": "raw_data_v2/sensors",
+  "glue_specific": {
+    "PartitionKeys": [
+      {
+        "Name": "survey_id",
+        "Type": "int"
+      }
+    ],
+    "Parameters": { "skip.header.line.count": "1" }
+  }
+}

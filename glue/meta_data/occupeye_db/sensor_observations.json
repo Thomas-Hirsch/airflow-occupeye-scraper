@@ -1,0 +1,33 @@
+{
+    "$schema": "../table_schema.json",
+    "id": "occupeye.sensor_observations",
+    "columns": [
+        {
+            "description": "SurveyDeviceID",
+            "name": "SurveyDeviceID",
+            "type": "character"
+        },
+        {
+            "description": "obs_datetime",
+            "name": "obs_datetime",
+            "type":"datetime"
+        },
+        {
+            "description": "sensor_value",
+            "name": "sensor_value",
+            "type": "int"
+        }],
+    "table_desc": "Sensor observations from the occupeye api",
+    "table_name": "sensor_observations",
+    "data_format": "csv",
+    "location": "raw_data_v2/sensor_observations",
+    "glue_specific": {
+        "PartitionKeys": [
+            {
+                "Name": "survey_id",
+                "Type": "int"
+            }
+        ],
+        "Parameters" : {"skip.header.line.count":"1"}
+    }
+}

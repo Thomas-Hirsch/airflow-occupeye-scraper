@@ -51,6 +51,15 @@ def get_sensors_dimension_from_api(survey):
     logger.info(f"Getting URL: {url}")
     r = requests.get(url, headers=headers)
     data = json.loads(r.text)
+
+    if len(data) == 0:
+        return None
+
+    keys = list(data[0].keys())
+    some_expected_keys = ['Building', 'HardwareID', 'SensorID', 'PIRAddress']
+    if len( set(some_expected_keys).intersection(set(keys)) ) != 4:
+        raise ValueError(f"Surveys API schema appeas to have changed.  Current keys are {keys}")
+
     return data
 
 
@@ -75,6 +84,14 @@ def get_survey_facts_from_api(survey, scrape_date_string=None):
     logger.info(f"Getting URL: {url}")
     r = requests.get(url, headers=headers)
     data = json.loads(r.text)
+    if len(data) == 0:
+        return None
+
+    keys = list(data[0].keys())
+    some_expected_keys = ['CountOcc', 'CountTotal', 'SurveyDeviceID', 'TriggerDate']
+    if len( set(some_expected_keys).intersection(set(keys)) ) != 4:
+        raise ValueError(f"Surveys API schema appeas to have changed.  Current keys are {keys}")
+
     return data
 
 base_url = "https://cloud.occupeye.com/OccupEye/"

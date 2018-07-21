@@ -1,0 +1,5 @@
+{
+    "description": "Data from occupeye",
+    "name": "occupeye_db",
+    "location": "s3://alpha-dag-occupeye/"
+}
