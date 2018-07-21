@@ -18,7 +18,9 @@ def get_surveys_df(surveys):
 
 def get_sensor_dimension_df(sensor_dimension):
     sensor_dimension = strip_commas_from_api_response(sensor_dimension)
-    return pd.DataFrame(sensor_dimension)
+    df = pd.DataFrame(sensor_dimension)
+    del df["SurveyID"]  #Because it's a partition so we don't need to duplicate
+    sensor_dimension
 
 def get_survey_fact_df(survey_fact):
     survey_fact_long = survey_fact_to_long_format(survey_fact)

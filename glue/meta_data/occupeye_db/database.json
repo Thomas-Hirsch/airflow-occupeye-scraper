@@ -1,5 +1,7 @@
 {
     "description": "Data from occupeye",
-    "name": "occupeye_db",
-    "location": "s3://alpha-dag-occupeye/"
+    "name": "occupeye_db_live",
+    "bucket": "alpha-dag-occupeye",
+    "base_folder": "raw_data_v5",
+    "location": ""
 }

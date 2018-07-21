@@ -4,7 +4,7 @@
     "columns": [
         {
             "description": "SurveyDeviceID",
-            "name": "SurveyDeviceID",
+            "name": "survey_device_id",
             "type": "character"
         },
         {
@@ -20,7 +20,7 @@
     "table_desc": "Sensor observations from the occupeye api",
     "table_name": "sensor_observations",
     "data_format": "csv",
-    "location": "raw_data_v2/sensor_observations",
+    "location": "sensor_observations",
     "glue_specific": {
         "PartitionKeys": [
             {

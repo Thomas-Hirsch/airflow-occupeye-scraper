@@ -91,7 +91,7 @@
   "table_desc": "Details of each sensor from the occupeye api",
   "table_name": "sensors",
   "data_format": "csv",
-  "location": "raw_data_v2/sensors",
+  "location": "sensors",
   "glue_specific": {
     "PartitionKeys": [
       {

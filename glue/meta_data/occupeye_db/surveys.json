@@ -66,7 +66,7 @@
     "table_desc": "Details of all surveys from the occupeye api",
     "table_name": "surveys",
     "data_format": "csv_quoted_nodate",
-    "location": "raw_data_v2/surveys",
+    "location": "surveys",
     "glue_specific": {
         "Parameters" : {"skip.header.line.count":"1"}
     }
