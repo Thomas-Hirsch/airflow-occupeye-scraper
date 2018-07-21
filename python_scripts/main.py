@@ -10,6 +10,7 @@ logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 from dataengineeringutils import s3
 from api_requests import get_surveys_from_api, get_sensors_dimension_from_api, get_survey_facts_from_api
+from refresh_partitions import refresh_glue_partitions
 
 from transfer_to_s3 import surveys_to_s3, sensor_dimension_to_s3, survey_fact_to_s3
 from time_utils import scrape_date_in_surveydays, next_execution_is_in_future
@@ -46,8 +47,8 @@ if args.scrape_type == 'daily':
             # Need a daily task anyway to refresh the Athena partitions
             if next_execution_is_in_future(utc_next_execution_date):
                 logger.info('Next execution date is in the future, refreshing Athena partitions')
-            else:
-                logger.info('next execution date in the past ')
+                refresh_glue_partitions()
+                logger.info('Succesfully refreshed partitions')
 
             survey_fact = get_survey_facts_from_api(survey, scrape_date_string_yesterday)
             survey_fact_to_s3(survey_fact, survey, scrape_date_string)

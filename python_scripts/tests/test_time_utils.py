@@ -6,7 +6,6 @@ Tests
 
 import unittest
 from time_utils import next_execution_is_in_future, scrape_date_in_surveydays
-from airflow.utils import timezone
 from dateutil.parser import parse
 import datetime
 
@@ -19,7 +18,7 @@ class AddTest(unittest.TestCase):
         """
         Adding two numbers should give the correct answer
         """
-        now = timezone.utcnow()
+        now = datetime.datetime.now(datetime.timezone.utc)
         nowplus = now + datetime.timedelta(seconds=10)
         nowminus = now - datetime.timedelta(seconds=10)
 
