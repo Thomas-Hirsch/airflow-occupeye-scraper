@@ -45,7 +45,7 @@ if args.scrape_type == 'daily':
             sensor_dimension_to_s3(sensor_dimension)
 
             survey_fact = get_survey_facts_from_api(survey, scrape_date_string_yesterday)
-            survey_fact_to_s3(survey_fact, survey, scrape_date_string)
+            survey_fact_to_s3(survey_fact, survey, scrape_date_string_yesterday)
 
     # Need a daily task anyway to refresh the Athena partitions
     if next_execution_is_in_future(utc_next_execution_date):
