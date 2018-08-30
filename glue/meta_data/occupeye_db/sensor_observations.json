@@ -1,5 +1,5 @@
 {
-    "$schema": "../table_schema.json",
+    "$schema": "https://raw.githubusercontent.com/moj-analytical-services/etl_manager/master/etl_manager/specs/table_schema.json",
     "id": "occupeye.sensor_observations",
     "columns": [
         {
@@ -17,8 +17,8 @@
             "name": "sensor_value",
             "type": "int"
         }],
-    "table_desc": "Sensor observations from the occupeye api",
-    "table_name": "sensor_observations",
+    "description": "Sensor observations from the occupeye api",
+    "name": "sensor_observations",
     "data_format": "csv",
     "location": "sensor_observations",
     "glue_specific": {

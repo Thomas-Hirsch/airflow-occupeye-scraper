@@ -1,5 +1,5 @@
 {
-    "$schema": "../table_schema.json",
+    "$schema": "https://raw.githubusercontent.com/moj-analytical-services/etl_manager/master/etl_manager/specs/table_schema.json",
     "id": "occupeye.surveys",
     "columns": [
         {
@@ -78,8 +78,8 @@
             "type": "int"
         }
            ],
-    "table_desc": "Details of all surveys from the occupeye api",
-    "table_name": "surveys",
+    "description": "Details of all surveys from the occupeye api",
+    "name": "surveys",
     "data_format": "csv_quoted_nodate",
     "location": "surveys",
     "glue_specific": {

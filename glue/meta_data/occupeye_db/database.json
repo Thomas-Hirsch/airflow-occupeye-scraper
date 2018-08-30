@@ -2,6 +2,5 @@
     "description": "Data from occupeye",
     "name": "occupeye_db_live",
     "bucket": "alpha-dag-occupeye",
-    "base_folder": "raw_data_v5",
-    "location": ""
+    "base_folder": "raw_data_v5"
 }
