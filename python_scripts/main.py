@@ -44,14 +44,14 @@ if args.scrape_type == 'daily':
             sensor_dimension = get_sensors_dimension_from_api(survey)
             sensor_dimension_to_s3(sensor_dimension)
 
-            # Need a daily task anyway to refresh the Athena partitions
-            if next_execution_is_in_future(utc_next_execution_date):
-                logger.info('Next execution date is in the future, refreshing Athena partitions')
-                refresh_glue_partitions()
-                logger.info('Succesfully refreshed partitions')
-
             survey_fact = get_survey_facts_from_api(survey, scrape_date_string_yesterday)
             survey_fact_to_s3(survey_fact, survey, scrape_date_string)
+
+    # Need a daily task anyway to refresh the Athena partitions
+    if next_execution_is_in_future(utc_next_execution_date):
+        logger.info('Next execution date is in the future, refreshing Athena partitions')
+        refresh_glue_partitions()
+        logger.info('Succesfully refreshed partitions')
 
 if args.scrape_type == 'hourly':
 
