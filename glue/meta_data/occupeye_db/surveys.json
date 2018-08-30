@@ -8,6 +8,11 @@
             "type": "boolean"
         },
         {
+            "description": "The ID of the company",
+            "name": "company_id",
+            "type": "character"
+        },
+        {
             "description": "Description of how to interpret the category_1 field",
             "name": "category_1_desc",
             "type": "character"
@@ -61,6 +66,16 @@
             "description": "The days in the working week for the survey",
             "name": "workweek",
             "type": "character"
+        },
+        {
+            "description": "The resolution of the report",
+            "name": "reportResolution",
+            "type": "character"
+        },
+        {
+            "description": "Poll frequency in seconds",
+            "name": "resolution",
+            "type": "int"
         }
            ],
     "table_desc": "Details of all surveys from the occupeye api",
