@@ -78,6 +78,11 @@
       "type": "character"
     },
     {
+      "description": "ShareHardwareID",
+      "name": "sharehardwareid",
+      "type": "character"
+    },
+    {
       "description": "ShareID",
       "name": "shareid",
       "type": "character"
