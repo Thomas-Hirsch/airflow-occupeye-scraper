@@ -69,7 +69,7 @@
         },
         {
             "description": "The resolution of the report",
-            "name": "reportResolution",
+            "name": "report_resolution",
             "type": "character"
         },
         {

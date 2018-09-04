@@ -1,7 +1,8 @@
 import datetime
 import pandas as pd
 
-
+from dataengineeringutils.pd_metadata_conformance import impose_exact_conformance_on_pd_df, check_pd_df_exactly_conforms_to_metadata
+from dataengineeringutils.utils import read_json
 from api_requests import get_surveys_from_api, get_sensors_dimension_from_api, get_survey_facts_from_api
 
 def strip_commas_from_api_response(list_of_dicts):
@@ -13,14 +14,33 @@ def strip_commas_from_api_response(list_of_dicts):
 
 def get_surveys_df(surveys):
     surveys = strip_commas_from_api_response(surveys)
-    return pd.DataFrame(surveys)
+    surveys_df =  pd.DataFrame(surveys)
+
+    # Rename columns to conform to metadata
+    renames = read_json("column_renames/surveys_renames.json")
+    surveys_df = surveys_df.rename(columns=renames)
+
+    # Impose metadata - i.e. ensure all expected columns are present and in correct order
+    surveys_metadata = read_json("glue/meta_data/occupeye_db/surveys.json")
+    surveys_df = impose_exact_conformance_on_pd_df(surveys_df, surveys_metadata)
+
+    return surveys_df
 
 
 def get_sensor_dimension_df(sensor_dimension):
     sensor_dimension = strip_commas_from_api_response(sensor_dimension)
-    df = pd.DataFrame(sensor_dimension)
-    del df["SurveyID"]  #Because it's a partition so we don't need to duplicate
-    sensor_dimension
+    sensors_df = pd.DataFrame(sensor_dimension)
+    del sensors_df["SurveyID"]  #Because it's a partition so we don't need to duplicate
+
+    # Rename columns to conform to metadata
+    renames = read_json("column_renames/sensors_renames.json")
+    sensors_df = sensors_df.rename(columns=renames)
+
+     # Impose metadata - i.e. ensure all expected columns are present and in correct order
+    sensors_metadata = read_json("glue/meta_data/occupeye_db/sensors.json")
+    sensors_df = impose_exact_conformance_on_pd_df(sensors_df, sensors_metadata)
+
+    return sensors_df
 
 def get_survey_fact_df(survey_fact):
     survey_fact_long = survey_fact_to_long_format(survey_fact)

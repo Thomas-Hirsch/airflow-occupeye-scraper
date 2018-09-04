@@ -1,0 +1,17 @@
+{
+"Active":"active",
+"CompanyID":"company_id",
+"Description1":"category_1_desc",
+"Description2":"category_2_desc",
+"Description3":"category_3_desc",
+"Disabled":"disabled",
+"EndDate":"enddate",
+"EndTime":"endtime",
+"Name":"name",
+"StartDate":"startdate",
+"StartTime":"starttime",
+"SurveyID":"survey_id",
+"WorkWeek":"workweek",
+"reportResolution":"report_resolution",
+"resolution":"resolution"
+}

@@ -1,0 +1,20 @@
+{
+"Building": "building",
+"Description1": "category_1",
+"Description2": "category_2",
+"Description3": "category_3",
+"DeviceType": "devicetype",
+"Floor": "floor",
+"HardwareID": "hardwareid",
+"HostAddress": "hostaddress",
+"Location": "location",
+"PIRAddress": "piraddress",
+"RoomDescription": "roomdescription",
+"RoomID": "roomid",
+"RoomName": "roomname",
+"RoomType": "roomtype",
+"SensorID": "sensorid",
+"ShareHardwareID": "sharehardwareid",
+"ShareID": "shareid",
+"SurveyDeviceID": "surveydeviceid"
+}

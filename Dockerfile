@@ -29,5 +29,7 @@ RUN pip install -r /opt/pandas/build/requirements.txt
 RUN pip install git+git://github.com/moj-analytical-services/dataengineeringutils.git@48cc711a53f053609960756c52461aaa61e01f8e
 RUN mkdir -p /airflow/xcom
 COPY python_scripts /
+COPY glue glue/
+COPY column_renames column_renames/
 
 CMD ["bash"]
