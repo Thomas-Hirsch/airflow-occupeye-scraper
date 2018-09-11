@@ -55,6 +55,10 @@ def get_sensors_dimension_from_api(survey):
     if len(data) == 0:
         return None
 
+    if data == {'Message': 'An error has occurred.'}:
+        logger.info(f"Unknown error occurred in survey {surveyid}")
+        return None
+
     keys = list(data[0].keys())
     some_expected_keys = ['Building', 'HardwareID', 'SensorID', 'PIRAddress']
     if len( set(some_expected_keys).intersection(set(keys)) ) != 4:

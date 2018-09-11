@@ -32,9 +32,7 @@ utc_next_execution_date = parse(args.next_execution_date)
 scrape_date_yesterday = scrape_date - datetime.timedelta(days=1)
 scrape_date_string_yesterday = scrape_date_yesterday.isoformat()
 
-
 surveys = get_surveys_from_api()
-
 
 if args.scrape_type == 'daily':
     surveys_to_s3(surveys)
