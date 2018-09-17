@@ -28,7 +28,7 @@ scrape_date_string = scrape_date.isoformat()
 scrape_hour = scrape_datetime.hour
 utc_next_execution_date = parse(args.next_execution_date)
 
-# We daily scrape at 6am rather than midnight just to make sure all the data's in the db for the previous day
+# We daily scrape at 3am rather than midnight just to make sure all the data's in the db for the previous day
 scrape_date_yesterday = scrape_date - datetime.timedelta(days=1)
 scrape_date_string_yesterday = scrape_date_yesterday.isoformat()
 
@@ -46,7 +46,11 @@ if args.scrape_type == 'daily':
             survey_fact_to_s3(survey_fact, survey, scrape_date_string_yesterday)
 
     # Need a daily task anyway to refresh the Athena partitions
-    if next_execution_is_in_future(utc_next_execution_date):
+    # On a non backfill day, scrape will execute the day after scrape_date_string e.g. if scrape_date_string is 2018-09-16, this will run on 2018-09-17 at 3am
+    # We only want refresh_glue_partitions to run on a regular scrape (not a backfill) so
+    yesterday_datetime = datetime.datetime.now() - datetime.timedelta(days=1)
+    yesterday_date_string = yesterday_datetime.date().isoformat()
+    if scrape_date_string == yesterday_date_string:
         logger.info('Next execution date is in the future, refreshing Athena partitions')
         refresh_glue_partitions()
         logger.info('Succesfully refreshed partitions')
