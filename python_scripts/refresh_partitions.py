@@ -1,17 +1,11 @@
-from pyathenajdbc import connect
+from get_athena_query_response import get_athena_query_response
 
 def refresh_glue_partitions():
-    conn = connect(s3_staging_dir='s3://alpha-dag-occupeye/partition_temp_dir',
-                region_name='eu-west-1')
 
-    with conn.cursor() as cursor:
-        cursor.execute("""
+    get_athena_query_response("""
         MSCK REPAIR TABLE occupeye_db.sensors;
-        """)
+        """,  out_path="s3://alpha-app-occupeye-automation/athena_temp_dir")
 
-    with conn.cursor() as cursor:
-        cursor.execute("""
+    get_athena_query_response("""
         MSCK REPAIR TABLE occupeye_db.sensor_observations;
-        """)
-
-    conn.close()
+        """, out_path="s3://alpha-app-occupeye-automation/athena_temp_dir")
