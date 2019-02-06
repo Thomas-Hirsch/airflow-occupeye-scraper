@@ -1,0 +1,50 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+          "Sid": "ListGlueJobFiles",
+          "Effect": "Allow",
+          "Action": [
+              "s3:ListBucket",
+              "s3:GetBucketLocation"
+          ],
+          "Resource": [
+              "arn:aws:s3:::alpha-dag-occupeye*",
+              "arn:aws:s3:::alpha-app-occupeye-automation*"
+          ]
+      },
+      {
+          "Sid": "Read",
+          "Effect": "Allow",
+          "Action": "s3:GetObject",
+          "Resource": [
+              "arn:aws:s3:::alpha-dag-occupeye/raw_data_v5/*",
+              "arn:aws:s3:::alpha-app-occupeye-automation/athena_temp_dir*",
+              "arn:aws:s3:::alpha-app-occupeye-automation/*"
+          ]
+      },
+      {
+          "Sid": "Writeanddelete",
+          "Effect": "Allow",
+          "Action": [
+              "s3:PutObject",
+              "s3:DeleteObject"
+          ],
+          "Resource": [
+              "arn:aws:s3:::alpha-app-occupeye-automation/*",
+              "arn:aws:s3:::alpha-app-occupeye-automation/athena_temp_dir*"
+          ]
+      },
+      {
+          "Sid": "athenaandglue",
+          "Effect": "Allow",
+          "Action": [
+              "athena:*",
+              "glue:*"
+          ],
+          "Resource": [
+              "*"
+          ]
+      }
+  ]
+}
