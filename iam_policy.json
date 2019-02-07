@@ -1,50 +1,57 @@
 {
-  "Version": "2012-10-17",
-  "Statement": [
-      {
-          "Sid": "ListGlueJobFiles",
-          "Effect": "Allow",
-          "Action": [
-              "s3:ListBucket",
-              "s3:GetBucketLocation"
-          ],
-          "Resource": [
-              "arn:aws:s3:::alpha-dag-occupeye*",
-              "arn:aws:s3:::alpha-app-occupeye-automation*"
-          ]
-      },
-      {
-          "Sid": "Read",
-          "Effect": "Allow",
-          "Action": "s3:GetObject",
-          "Resource": [
-              "arn:aws:s3:::alpha-dag-occupeye/raw_data_v5/*",
-              "arn:aws:s3:::alpha-app-occupeye-automation/athena_temp_dir*",
-              "arn:aws:s3:::alpha-app-occupeye-automation/*"
-          ]
-      },
-      {
-          "Sid": "Writeanddelete",
-          "Effect": "Allow",
-          "Action": [
-              "s3:PutObject",
-              "s3:DeleteObject"
-          ],
-          "Resource": [
-              "arn:aws:s3:::alpha-app-occupeye-automation/*",
-              "arn:aws:s3:::alpha-app-occupeye-automation/athena_temp_dir*"
-          ]
-      },
-      {
-          "Sid": "athenaandglue",
-          "Effect": "Allow",
-          "Action": [
-              "athena:*",
-              "glue:*"
-          ],
-          "Resource": [
-              "*"
-          ]
-      }
-  ]
+	"Version": "2012-10-17",
+	"Statement": [{
+			"Sid": "ListBucketsInConsole",
+			"Effect": "Allow",
+			"Action": [
+				"s3:GetBucketLocation",
+				"s3:ListAllMyBuckets"
+			],
+			"Resource": "arn:aws:s3:::*"
+		},
+		{
+			"Sid": "ListObjects",
+			"Action": [
+				"s3:ListBucket"
+			],
+			"Effect": "Allow",
+			"Resource": [
+				"arn:aws:s3:::alpha-dag-occupeye"
+			]
+		},
+		{
+			"Sid": "ReadObjects",
+			"Action": [
+				"s3:GetObject",
+				"s3:GetObjectAcl",
+				"s3:GetObjectVersion"
+			],
+			"Effect": "Allow",
+			"Resource": "arn:aws:s3:::alpha-dag-occupeye/*"
+		},
+		{
+			"Sid": "UpdateRenameAndDeleteObjects",
+			"Action": [
+				"s3:DeleteObject",
+				"s3:DeleteObjectVersion",
+				"s3:PutObject",
+				"s3:PutObjectAcl",
+				"s3:RestoreObject"
+			],
+			"Effect": "Allow",
+			"Resource": "arn:aws:s3:::alpha-dag-occupeye/*"
+		},
+		{
+			"Sid": "athenaandglue",
+			"Effect": "Allow",
+			"Action": [
+				"athena:*",
+				"glue:*"
+			],
+			"Resource": [
+				"*"
+			]
+		}
+
+	]
 }
