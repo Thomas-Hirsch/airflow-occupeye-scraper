@@ -29,7 +29,7 @@ scrape_hour = scrape_datetime.hour
 utc_next_execution_date = parse(args.next_execution_date)
 
 # We daily scrape at 3am rather than midnight just to make sure all the data's in the db for the previous day
-scrape_date_yesterday = scrape_date - datetime.timedelta(days=1)
+scrape_date_yesterday = scrape_date # scrape_date is already yesterday
 scrape_date_string_yesterday = scrape_date_yesterday.isoformat()
 
 surveys = get_surveys_from_api()
