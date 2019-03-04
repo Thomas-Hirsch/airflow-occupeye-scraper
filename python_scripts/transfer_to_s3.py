@@ -11,6 +11,7 @@ def surveys_to_s3(surveys):
     # s3.pd_write_csv_s3(df, full_path, index=False)  This led to boto3 problems in the cluster
     df.to_csv("myfile.csv", index=False)
     s3.upload_file_to_s3_from_path("myfile.csv", bucket, path)
+    s3.upload_file_to_s3_from_path("myfile.csv", "alpha-app-occupeye-automation", path)
 
 
 def sensor_dimension_to_s3(sensor_dimension):
@@ -25,6 +26,7 @@ def sensor_dimension_to_s3(sensor_dimension):
         # s3.pd_write_csv_s3(df, full_path, index=False)  This led to boto3 problems in the cluster
         df.to_csv("myfile.csv", index=False)
         s3.upload_file_to_s3_from_path("myfile.csv", bucket, path)
+        s3.upload_file_to_s3_from_path("myfile.csv", "alpha-app-occupeye-automation", path)
 
 
 def survey_fact_to_s3(survey_facts, survey, date_string):
@@ -39,3 +41,4 @@ def survey_fact_to_s3(survey_facts, survey, date_string):
     bucket = "alpha-dag-occupeye"
     path = f"raw_data_v5/sensor_observations/survey_id={survey['SurveyID']}/{date_string}.csv.gz"
     s3.upload_file_to_s3_from_path("temp_df_for_upload.csv.gz", bucket, path)
+    s3.upload_file_to_s3_from_path("temp_df_for_upload.csv.gz", "alpha-app-occupeye-automation", path)
