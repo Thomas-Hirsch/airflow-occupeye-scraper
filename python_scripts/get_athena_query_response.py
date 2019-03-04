@@ -2,8 +2,9 @@ import boto3
 import pandas as pd
 import io
 import time
+import os
 
-def get_athena_query_response(sql_query, out_path, return_athena_types = False, timeout = None) :
+def get_athena_query_response(sql_query, return_athena_types = False, timeout = None) :
 
     type_dictionary = {
         "char" : "character",
@@ -17,16 +18,19 @@ def get_athena_query_response(sql_query, out_path, return_athena_types = False, 
         "double" : "double"
     }
 
-    def s3_path_to_bucket_key(s3_path):
-        """
-        Splits out s3 file path to bucket key combination
-        """
-        s3_path = s3_path.replace("s3://", "")
-        bucket, key = s3_path.split('/', 1)
-        return bucket, key
+    # Get role specific path for athena output
+    bucket = "alpha-athena-query-dump"
 
+    sts_client=boto3.client('sts')
+    sts_resp=sts_client.get_caller_identity()
+
+    out_path = os.path.join('s3://', bucket, sts_resp['UserId'], "__athena_temp__/")
+
+    if out_path[-1] != '/':
+      out_path += '/'
+
+    # Run the athena query
     athena_client = boto3.client('athena', 'eu-west-1')
-    s3_client = boto3.client('s3')
     response = athena_client.start_query_execution(
         QueryString=sql_query,
         ResultConfiguration={
@@ -50,8 +54,8 @@ def get_athena_query_response(sql_query, out_path, return_athena_types = False, 
 
         counter += 1
         if timeout :
-            if counter*sleep_time > timeout :
-                raise ValueError('athena timed out')
+          if counter*sleep_time > timeout :
+              raise ValueError('athena timed out')
 
     result_response = athena_client.get_query_results(QueryExecutionId=athena_status['QueryExecution']['QueryExecutionId'], MaxResults=1)
     s3_path = athena_status['QueryExecution']['ResultConfiguration']['OutputLocation']
