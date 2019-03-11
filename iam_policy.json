@@ -7,7 +7,11 @@
 				"s3:GetBucketLocation",
 				"s3:ListAllMyBuckets"
 			],
-			"Resource": "arn:aws:s3:::alpha-dag-occupeye"
+			"Resource": [
+				"arn:aws:s3:::alpha-dag-occupeye",
+				"arn:aws:s3:::alpha-app-occupeye-automation"
+			]
+		
 		},
 		{
 			"Sid": "ListObjects",
@@ -16,7 +20,8 @@
 			],
 			"Effect": "Allow",
 			"Resource": [
-				"arn:aws:s3:::alpha-dag-occupeye"
+				"arn:aws:s3:::alpha-dag-occupeye",
+				"arn:aws:s3:::alpha-app-occupeye-automation"
 			]
 		},
 		{
@@ -27,7 +32,10 @@
 				"s3:GetObjectVersion"
 			],
 			"Effect": "Allow",
-			"Resource": "arn:aws:s3:::alpha-dag-occupeye/*"
+			"Resource": [
+				"arn:aws:s3:::alpha-dag-occupeye/*",
+				"arn:aws:s3:::alpha-app-occupeye-automation/*"
+			]
 		},
 		{
 			"Sid": "UpdateRenameAndDeleteObjects",
@@ -39,7 +47,10 @@
 				"s3:RestoreObject"
 			],
 			"Effect": "Allow",
-			"Resource": "arn:aws:s3:::alpha-dag-occupeye/*"
+			"Resource": [
+				"arn:aws:s3:::alpha-dag-occupeye/*",
+				"arn:aws:s3:::alpha-app-occupeye-automation/*"
+			]
 		},
 		{
 			"Sid": "athenaandglue",
