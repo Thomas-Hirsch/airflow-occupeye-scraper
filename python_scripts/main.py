@@ -13,7 +13,9 @@ from api_requests import get_surveys_from_api, get_sensors_dimension_from_api, g
 from refresh_partitions import refresh_glue_partitions
 
 from transfer_to_s3 import surveys_to_s3, sensor_dimension_to_s3, survey_fact_to_s3
-from time_utils import scrape_date_in_surveydays, next_execution_is_in_future
+from time_utils import scrape_date_in_surveydays, next_execution_is_in_future, survey_not_scraped
+from rescrape_entire_survey import rescrape_entire_survey
+
 argp = argparse.ArgumentParser(description='Optional app description')
 
 argp.add_argument('--scrape_type', type=str, help='daily or hourly')
@@ -37,8 +39,9 @@ surveys = get_surveys_from_api()
 if args.scrape_type == 'daily':
     surveys_to_s3(surveys)
     for survey in surveys:
-
-        if scrape_date_in_surveydays(scrape_date_string, survey):
+        if survey_not_scraped(survey):
+            rescrape_entire_survey(survey)
+        elif scrape_date_in_surveydays(scrape_date_string, survey):
             sensor_dimension = get_sensors_dimension_from_api(survey)
             sensor_dimension_to_s3(sensor_dimension)
 
