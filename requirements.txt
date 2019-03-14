@@ -1,6 +1,6 @@
-numpy==1.14.5
-scipy==1.1.0
-pandas==0.23.3
+numpy>=1.16.1
+scipy>=1.1.0
+pandas>=0.24.1
 boto3==1.7.62
 requests>=2.20.0
 git+git://github.com/moj-analytical-services/gluejobutils.git#egg=gluejobutils
