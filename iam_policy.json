@@ -9,7 +9,8 @@
 			],
 			"Resource": [
 				"arn:aws:s3:::alpha-dag-occupeye",
-				"arn:aws:s3:::alpha-app-occupeye-automation"
+				"arn:aws:s3:::alpha-app-occupeye-automation",
+				"arn:aws:s3:::alpha-athena-query-dump"
 			]
 		
 		},
@@ -21,7 +22,8 @@
 			"Effect": "Allow",
 			"Resource": [
 				"arn:aws:s3:::alpha-dag-occupeye",
-				"arn:aws:s3:::alpha-app-occupeye-automation"
+				"arn:aws:s3:::alpha-app-occupeye-automation",
+				"arn:aws:s3:::alpha-athena-query-dump"
 			]
 		},
 		{
@@ -34,7 +36,8 @@
 			"Effect": "Allow",
 			"Resource": [
 				"arn:aws:s3:::alpha-dag-occupeye/*",
-				"arn:aws:s3:::alpha-app-occupeye-automation/*"
+				"arn:aws:s3:::alpha-app-occupeye-automation/*",
+				"arn:aws:s3:::alpha-athena-query-dump/*"
 			]
 		},
 		{
@@ -49,7 +52,8 @@
 			"Effect": "Allow",
 			"Resource": [
 				"arn:aws:s3:::alpha-dag-occupeye/*",
-				"arn:aws:s3:::alpha-app-occupeye-automation/*"
+				"arn:aws:s3:::alpha-app-occupeye-automation/*",
+				"arn:aws:s3:::alpha-athena-query-dump/*"
 			]
 		},
 		{
