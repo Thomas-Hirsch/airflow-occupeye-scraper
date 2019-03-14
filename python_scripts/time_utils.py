@@ -1,4 +1,6 @@
+import pydbtools
 import datetime
+from api_requests import get_surveys_from_api
 
 def scrape_date_in_surveydays(scrape_date_string, survey):
     return (survey["StartDate"] <= scrape_date_string <= survey["EndDate"])
@@ -23,3 +25,9 @@ def get_survey_dates(survey):
         end_date = end_date_2
 
     return daterange(start_date, end_date)
+
+
+def survey_not_scraped(survey):
+    mindate = pydbtools.read_sql(f"select count(*) from occupeye_app_db.sensor_observations where survey_id = {survey['SurveyID']}")
+    return(mindate.iat[0,0] == 0)
+

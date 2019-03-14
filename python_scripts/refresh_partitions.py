@@ -1,4 +1,4 @@
-from get_athena_query_response import get_athena_query_response
+from pydbtools import get_athena_query_response
 
 def refresh_glue_partitions():
 

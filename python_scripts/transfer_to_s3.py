@@ -31,7 +31,7 @@ def sensor_dimension_to_s3(sensor_dimension):
 
 def survey_fact_to_s3(survey_facts, survey, date_string):
     if survey_facts is None:
-        logger.info("No fact data found for this sensor")
+        logger.info("No fact data found for this survey")
         return None
 
     df_survey_fact = get_survey_fact_df(survey_facts)
