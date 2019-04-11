@@ -22,6 +22,9 @@ def get_survey_from_id(survey_id):
 
 def rescrape_entire_survey(survey):
     surveydays = get_survey_dates(survey)
+    
+    sensor_dimension = get_sensors_dimension_from_api(survey)
+    sensor_dimension_to_s3(sensor_dimension)
 
     for day in surveydays:
 
