@@ -1,9 +1,4 @@
-import json
 import datetime
-import logging
-import sys
-
-from dataengineeringutils import s3
 from api_requests import (
     get_surveys_from_api,
     get_sensors_dimension_from_api,
@@ -11,16 +6,8 @@ from api_requests import (
 )
 from refresh_partitions import refresh_glue_partitions
 
-from transfer_to_s3 import (
-    surveys_to_s3,
-    sensor_dimension_to_s3,
-    survey_fact_to_s3,
-)
-from time_utils import (
-    scrape_date_in_surveydays,
-    next_execution_is_in_future,
-    get_survey_dates,
-)
+from transfer_to_s3 import sensor_dimension_to_s3, survey_fact_to_s3
+from time_utils import get_survey_dates
 
 
 def get_survey_from_id(survey_id):

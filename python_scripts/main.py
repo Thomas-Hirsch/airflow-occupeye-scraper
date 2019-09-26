@@ -15,10 +15,7 @@ from transfer_to_s3 import (
     sensor_dimension_to_s3,
     survey_fact_to_s3,
 )
-from time_utils import (
-    scrape_date_in_surveydays,
-    survey_not_scraped,
-)
+from time_utils import scrape_date_in_surveydays, survey_not_scraped
 from rescrape_entire_survey import rescrape_entire_survey
 
 logger = logging.getLogger(__name__)

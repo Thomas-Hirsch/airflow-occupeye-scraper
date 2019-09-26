@@ -20,7 +20,7 @@ def s3_object_exists(bucket, path):
     try:
         s3_resource.Object(bucket, path).load()
         return True
-    except botocore.exceptions.ClientError as e:
+    except botocore.exceptions.ClientError:
         return False
 
 
