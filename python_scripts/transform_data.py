@@ -1,7 +1,7 @@
 import datetime
 import pandas as pd
 
-from dataengineeringutils.pd_metadata_conformance import impose_exact_conformance_on_pd_df, check_pd_df_exactly_conforms_to_metadata
+from dataengineeringutils.pd_metadata_conformance import impose_exact_conformance_on_pd_df, check_pd_df_exactly_conforms_to_metadata, impose_metadata_column_order_on_pd_df
 from dataengineeringutils.utils import read_json
 from api_requests import get_surveys_from_api, get_sensors_dimension_from_api, get_survey_facts_from_api
 
@@ -44,7 +44,12 @@ def get_sensor_dimension_df(sensor_dimension):
 
 def get_survey_fact_df(survey_fact):
     survey_fact_long = survey_fact_to_long_format(survey_fact)
-    return pd.DataFrame(survey_fact_long)
+    sensor_observations_metadata = read_json("glue/meta_data/occupeye_db/sensor_observations.json")
+    renames = read_json("column_renames/sensor_observations_renames.json")
+    sensor_observations_df = pd.DataFrame(survey_fact_long).rename(columns=renames)
+    sensor_observations_df = impose_metadata_column_order_on_pd_df(sensor_observations_df, sensor_observations_metadata)
+    
+    return sensor_observations_df
 
 def survey_fact_to_long_format(survey_fact):
 
