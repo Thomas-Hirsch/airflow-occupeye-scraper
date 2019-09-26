@@ -24,7 +24,8 @@ def get_surveys_df(surveys):
     renames = read_json("column_renames/surveys_renames.json")
     surveys_df = surveys_df.rename(columns=renames)
 
-    # Impose metadata - i.e. ensure all expected columns are present and in correct order
+    # Impose metadata - i.e. ensure all expected columns are present
+    # and in correct order
     surveys_metadata = read_json("glue/meta_data/occupeye_db/surveys.json")
     surveys_df = impose_exact_conformance_on_pd_df(
         surveys_df, surveys_metadata
@@ -44,7 +45,8 @@ def get_sensor_dimension_df(sensor_dimension):
     renames = read_json("column_renames/sensors_renames.json")
     sensors_df = sensors_df.rename(columns=renames)
 
-    # Impose metadata - i.e. ensure all expected columns are present and in correct order
+    # Impose metadata - i.e. ensure all expected columns are present
+    # and in correct order
     sensors_metadata = read_json("glue/meta_data/occupeye_db/sensors.json")
     sensors_df = impose_exact_conformance_on_pd_df(
         sensors_df, sensors_metadata
