@@ -34,7 +34,7 @@ def get_survey_dates(survey):
 
 def survey_not_scraped(survey):
     mindate = pydbtools.read_sql(
-        f"select count(*) from occupeye_app_db.sensor_observations"
+        f"select count(*) from occupeye_app_db.sensor_observations "
         f"where survey_id = {survey['SurveyID']}"
     )
     return mindate.iat[0, 0] == 0
