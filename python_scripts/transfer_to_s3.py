@@ -50,7 +50,7 @@ def survey_fact_to_s3(survey_facts, survey, date_string):
     bucket = "alpha-dag-occupeye"
     path = (
         f"raw_data_v5/sensor_observations/"
-        "fsurvey_id={survey['SurveyID']}/{date_string}.csv.gz"
+        f"survey_id={survey['SurveyID']}/{date_string}.csv.gz"
     )
     s3.upload_file_to_s3_from_path("temp_df_for_upload.csv.gz", bucket, path)
     s3.upload_file_to_s3_from_path(
