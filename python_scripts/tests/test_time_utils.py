@@ -9,6 +9,7 @@ from time_utils import next_execution_is_in_future, scrape_date_in_surveydays
 from dateutil.parser import parse
 import datetime
 
+
 class AddTest(unittest.TestCase):
     """
     Test the add function
@@ -30,19 +31,21 @@ class AddTest(unittest.TestCase):
         """
         Adding two numbers should give the correct answer
         """
-        survey =  {'Description1': 'Corporate Services',
-                    'Description2': 'Directorate',
-                    'Description3': 'Admin',
-                    'Disabled': False,
-                    'EndDate': '2017-11-10',
-                    'EndTime': '17:00',
-                    'Name': 'V | Notts Virtual',
-                    'StartDate': '2017-10-30',
-                    'StartTime': '09:00',
-                    'SurveyID': 312,
-                    'WorkWeek': 'Monday,Tuesday,Wednesday,Thursday,Friday',
-                    'reportResolution': None,
-                    'resolution': 600}
+        survey = {
+            "Description1": "Corporate Services",
+            "Description2": "Directorate",
+            "Description3": "Admin",
+            "Disabled": False,
+            "EndDate": "2017-11-10",
+            "EndTime": "17:00",
+            "Name": "V | Notts Virtual",
+            "StartDate": "2017-10-30",
+            "StartTime": "09:00",
+            "SurveyID": 312,
+            "WorkWeek": "Monday,Tuesday,Wednesday,Thursday,Friday",
+            "reportResolution": None,
+            "resolution": 600,
+        }
 
         f1 = scrape_date_in_surveydays("2017-10-29", survey)
         t1 = scrape_date_in_surveydays("2017-10-30", survey)
@@ -56,6 +59,6 @@ class AddTest(unittest.TestCase):
         self.assertFalse(f1)
         self.assertFalse(f2)
 
-if __name__ == '__main__':
-    unittest.main()
 
+if __name__ == "__main__":
+    unittest.main()
