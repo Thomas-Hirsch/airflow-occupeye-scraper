@@ -1,4 +1,4 @@
-from s3_utils import read_json_from_s3
+from .s3_utils import read_json_from_s3
 import json
 import logging
 import requests

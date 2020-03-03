@@ -1,13 +1,13 @@
 import datetime
-from api_requests import (
+from .api_requests import (
     get_surveys_from_api,
     get_sensors_dimension_from_api,
     get_survey_facts_from_api,
 )
-from refresh_partitions import refresh_glue_partitions
+from .refresh_partitions import refresh_glue_partitions
 
-from transfer_to_s3 import sensor_dimension_to_s3, survey_fact_to_s3
-from time_utils import get_survey_dates
+from .transfer_to_s3 import sensor_dimension_to_s3, survey_fact_to_s3
+from .time_utils import get_survey_dates
 
 
 def get_survey_from_id(survey_id):
